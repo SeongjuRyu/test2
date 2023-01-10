@@ -1,0 +1,12 @@
+.circle1 {
+	background-color:#fff;
+	border:3px #1d1919 solid;
+	width: 90px;
+	height: 90px;
+	-webkit-border-radius:90px;
+	-moz-border-radius:90px;
+	margin-left:15px
+}
+#deliver {
+	margin-left : 49%;
+	}

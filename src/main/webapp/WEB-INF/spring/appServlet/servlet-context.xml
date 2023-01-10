@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans:beans xmlns="http://www.springframework.org/schema/mvc"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:beans="http://www.springframework.org/schema/beans"
+	xmlns:context="http://www.springframework.org/schema/context"
+	xsi:schemaLocation="http://www.springframework.org/schema/mvc https://www.springframework.org/schema/mvc/spring-mvc.xsd
+		http://www.springframework.org/schema/beans https://www.springframework.org/schema/beans/spring-beans.xsd
+		http://www.springframework.org/schema/context https://www.springframework.org/schema/context/spring-context.xsd">
+
+	<!-- DispatcherServlet Context: defines this servlet's request-processing infrastructure -->
+	<!-- 파일 업로드 관련 설정 -->
+	<beans:bean class="org.springframework.web.multipart.commons.CommonsMultipartResolver" id="multipartResolver">
+	<!-- 파일 업로드 용량 -->
+		<beans:property name='maxUploadSize' value='10485760'/>
+		<beans:property name="defaultEncoding" value="utf-8"/>
+	</beans:bean>
+	
+	<!-- 파일업로드를 위한 디렉토리 설정 -->
+	<!-- String uploadPath=new String("d:/upload");-->
+	<beans:bean class="java.lang.String" id="uploadPath">
+		<beans:constructor-arg value="c:/upload"/>
+	</beans:bean>
+	<!-- Enables the Spring MVC @Controller programming model -->
+	<annotation-driven />
+
+	<!-- Handles HTTP GET requests for /resources/** by efficiently serving up static resources in the ${webappRoot}/resources directory -->
+	<resources mapping="/resources/**" location="/resources/" />
+
+	<!-- Resolves views selected for rendering by @Controllers to .jsp resources in the /WEB-INF/views directory -->
+	<beans:bean class="org.springframework.web.servlet.view.InternalResourceViewResolver">
+		<beans:property name="prefix" value="/WEB-INF/views/" />
+		<beans:property name="suffix" value=".jsp" />
+	</beans:bean>
+	
+	<context:component-scan base-package="com.jurgi.yo" />
+	<context:component-scan base-package="com.jurgi.yo.model"/>
+	
+	<context:component-scan base-package="com.jurgi.logincontroller"/>
+	<context:component-scan base-package="com.jurgi.loginmodel"/>
+	
+	<context:component-scan base-package="com.jurgi.SignUpController"/>
+	<context:component-scan base-package="com.jurgi.SignUpModel"/>
+	
+	<context:component-scan base-package="com.jurgi.category_menu.controller"/>
+	<context:component-scan base-package="com.jurgi.category_menu.model"/>
+	
+	<context:component-scan base-package="com.jurgi.IdPwdFindController"/>
+	<context:component-scan base-package="com.jurgi.IdPwdFindModel"/>
+		
+	<context:component-scan base-package="com.jurgi.InsertMenuController"/>
+	<context:component-scan base-package="com.jurgi.InsertMenuModel"/>
+	
+	<context:component-scan base-package="com.jurgi.category_menu_detail.controller"/>
+	<context:component-scan base-package="com.jurgi.category_menu_detail.model"/>
+	
+	
+	<context:component-scan base-package="com.jurgi.MarketCreateController"/>
+	<context:component-scan base-package="com.jurgi.MarketCreateModel"/>
+	
+	<context:component-scan base-package="com.jurgi.jumju_order.controller"/>
+	<context:component-scan base-package="com.jurgi.jumju_order.model"/>
+	
+	<context:component-scan base-package="com.jurgi.orderlist.controller"/>
+	<context:component-scan base-package="com.jurgi.orderlist.model"/>
+	
+	<context:component-scan base-package="com.jurgi.FileUploadService"/>
+</beans:beans>

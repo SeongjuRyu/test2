@@ -1,0 +1,87 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans https://www.springframework.org/schema/beans/spring-beans.xsd">
+	
+	<!-- Root Context: defines shared resources visible to all other web components -->
+		
+		
+				   <bean
+      class="org.springframework.beans.factory.config.PropertyPlaceholderConfigurer">
+      <property name="locations">
+         <value>classpath:pack/resource/db.properties</value>
+      </property>
+   </bean>
+   <bean id="dataSource"
+      class="org.springframework.jdbc.datasource.SimpleDriverDataSource">
+      <property name="driverClass" value="${driver}" />
+      <property name="url" value="${url}" />
+      <property name="username" value="${username}" />
+      <property name="password" value="${password}" />
+   </bean>
+   
+   <bean id="sqlSessionFactoryBean" class="org.mybatis.spring.SqlSessionFactoryBean">
+      <property name="dataSource" ref="dataSource" />
+   </bean>	
+		
+		   <!-- setter injection한거.... -->
+   <bean id="login" class="org.mybatis.spring.mapper.MapperFactoryBean"> 
+   															  
+   	<property name="mapperInterface" value="com.jurgi.loginmodel.LoginAnnointer" />
+   	<property name="sqlSessionFactory" ref="sqlSessionFactoryBean" ></property>  
+   </bean>
+   
+   	<bean id="MainMenu" class="org.mybatis.spring.mapper.MapperFactoryBean"> 
+   															  
+   	<property name="mapperInterface" value="com.jurgi.yo.model.MainCategoryAnnoInter" />
+   	<property name="sqlSessionFactory" ref="sqlSessionFactoryBean" ></property>  
+   </bean>
+   
+    <bean id="SignUp" class="org.mybatis.spring.mapper.MapperFactoryBean"> 
+   													  
+   	<property name="mapperInterface" value="com.jurgi.SignUpModel.SignUpAnnoInter" />
+   	<property name="sqlSessionFactory" ref="sqlSessionFactoryBean" ></property>  
+   </bean>
+   
+    <bean id="InsertMenu" class="org.mybatis.spring.mapper.MapperFactoryBean"> 
+   													  
+   	<property name="mapperInterface" value="com.jurgi.InsertMenuModel.InsertMenuAnnointer" />
+   	<property name="sqlSessionFactory" ref="sqlSessionFactoryBean" ></property>  
+   </bean>
+   
+    <bean id="IdPwdFind" class="org.mybatis.spring.mapper.MapperFactoryBean"> 
+   													  
+   	<property name="mapperInterface" value="com.jurgi.IdPwdFindModel.IdPwdFindAnnoInter" />
+   	<property name="sqlSessionFactory" ref="sqlSessionFactoryBean" ></property>  
+   </bean>
+   
+    <bean id="Category_menu" class="org.mybatis.spring.mapper.MapperFactoryBean"> 
+                                                  
+      <property name="mapperInterface" value="com.jurgi.category_menu.model.category_menuAnnoInter" />
+      <property name="sqlSessionFactory" ref="sqlSessionFactoryBean" ></property>  
+   </bean>
+   
+       <bean id="Category_menu_detail" class="org.mybatis.spring.mapper.MapperFactoryBean"> 
+                                                  
+      <property name="mapperInterface" value="com.jurgi.category_menu_detail.model.category_menu_detailAnnoInter" />
+      <property name="sqlSessionFactory" ref="sqlSessionFactoryBean" ></property>  
+   </bean>
+      <bean id="MarketCreate" class="org.mybatis.spring.mapper.MapperFactoryBean"> 
+   															  
+   	<property name="mapperInterface" value="com.jurgi.MarketCreateModel.MarketCreateAnnointer" />
+   	<property name="sqlSessionFactory" ref="sqlSessionFactoryBean" ></property>  
+   </bean>
+   <bean id="OrderSel" class="org.mybatis.spring.mapper.MapperFactoryBean"> 
+   															  
+   	<property name="mapperInterface" value="com.jurgi.jumju_order.model.JumjuOrderAnnointer" />
+   	<property name="sqlSessionFactory" ref="sqlSessionFactoryBean" ></property>  
+   </bean>
+   
+   <bean id="Orderlist" class="org.mybatis.spring.mapper.MapperFactoryBean"> 
+   															  
+   	<property name="mapperInterface" value="com.jurgi.orderlist.model.oderlistAnnointer" />
+   	<property name="sqlSessionFactory" ref="sqlSessionFactoryBean" ></property>  
+   </bean>
+   
+
+</beans>
